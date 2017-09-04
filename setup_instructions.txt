@@ -69,12 +69,16 @@ exit
 # Make docker volumes directories
 sudo su
 mkdir /dockervols
-mkdir /dockervols/rancher
 mkdir /dockervols/proxy
-mkdir /dockervols/conf.d
-mkdir /dockervols/vhost.d
+mkdir /dockervols/proxy/conf.d
+mkdir /dockervols/proxy/vhost.d
 mkdir /dockervols/proxy/certs
+mkdir /dockervols/proxy/html
 exit
+
+# Let site-html be owned by dev, since we will update it a lot
+mkdir /dockervols/site-html
+
 
 
 # Clone quinn repo
@@ -83,7 +87,7 @@ sudo mv quinn /quinn-config
 
 
 
-# Start initial containers
+# Start containers
 cd /quinn-config
 docker-compose up -d
 
