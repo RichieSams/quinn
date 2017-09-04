@@ -79,11 +79,11 @@ exit
 
 # Clone quinn repo
 git clone https://github.com/RichieSams/quinn.git
-sudo mv quinn /quinn-setup
+sudo mv quinn /quinn-config
 
 
 
 # Start initial containers
-cd /quinn-setup
+cd /quinn-config
 docker-compose up -d
 
