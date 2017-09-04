@@ -4,12 +4,12 @@ services:
     image: rancher/server:stable
     volumes:
       - /dockervols/rancher:/var/lib/mysql
-      - /etc/letsencrypt:/etc/letsencrypt
     restart: always
   nginx-ssl-proxy:
     image: nginx:1.13.3-alpine
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt
     links:
       - rancher-server
       #- nginx
