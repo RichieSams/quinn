@@ -1,0 +1,89 @@
+# Log in as root
+adduser dev
+usermod -aG sudo dev
+
+# Log out as root
+# Log in as dev
+
+mkdir .ssh
+touch .ssh/authorized_keys
+chmod 700 .ssh
+chmod 600 .ssh/authorized_keys
+
+# Edit .ssh/authorized_keys and add public key
+# Log out / in to test
+
+
+
+# Update
+sudo apt-get update
+sudo apt-get upgrade
+
+# If grub updates, pick 'keep the local version currently installed'
+
+
+
+# Set hostname
+hostnamectl set-hostname quinn
+
+
+
+# Make /etc/hosts look like this:
+
+127.0.0.1       localhost.localdomain localhost
+45.56.79.149    adrianastley.com quinn
+
+2600:3c00::f03c:91ff:fecf:ee27 quinn.adrianastley.com quinn
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+
+
+# Update timezone
+dpkg-reconfigure tzdata
+
+
+
+# Install docker
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+sudo apt-get update
+sudo apt-get install docker-ce
+
+
+
+# Install docker-compose
+sudo su
+curl -L https://github.com/docker/compose/releases/download/1.16.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+exit
+
+
+
+# Make docker volumes directories
+sudo su
+mkdir /dockervols
+mkdir /dockervols/rancher
+mkdir /dockervols/proxy
+mkdir /dockervols/conf.d
+mkdir /dockervols/vhost.d
+mkdir /dockervols/proxy/certs
+exit
+
+
+# Clone quinn repo
+git clone https://github.com/RichieSams/quinn.git
+sudo mv quinn /quinn-setup
+
+
+
+# Start initial containers
+cd /quinn-setup
+docker-compose up -d
+
