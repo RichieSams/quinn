@@ -74,6 +74,7 @@ mkdir /dockervols/proxy/conf.d
 mkdir /dockervols/proxy/vhost.d
 mkdir /dockervols/proxy/certs
 mkdir /dockervols/proxy/html
+mkdir /dockervols/rcc-bot
 exit
 
 # Let site-html be owned by dev, since we will update it a lot
