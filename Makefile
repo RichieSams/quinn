@@ -27,10 +27,10 @@ logs_rcc:
 	docker-compose -f docker-compose-rcc.yaml --tail=50 -f
 
 up_website:
-	docker-compose -f docker-compose-website up -d
+	docker-compose -f docker-compose-website.yaml up -d
 
 down_website:
-	docker-compose -f docker-compose-website down
+	docker-compose -f docker-compose-website.yaml down
 
 logs_website:
 	docker-compose -f docker-compose-website.yaml --tail=50 -f
