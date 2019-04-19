@@ -15,7 +15,7 @@ down_proxy:
 	docker-compose -f docker-compose-proxy.yaml down
 
 logs_proxy:
-	docker-compose -f docker-compose-proxy.yaml --tail=50 -f
+	docker-compose -f docker-compose-proxy.yaml logs --tail=50 -f
 
 up_rcc:
 	docker-compose -f docker-compose-rcc.yaml up -d
@@ -24,7 +24,7 @@ down_rcc:
 	docker-compose -f docker-compose-rcc.yaml down
 
 logs_rcc:
-	docker-compose -f docker-compose-rcc.yaml --tail=50 -f
+	docker-compose -f docker-compose-rcc.yaml logs --tail=50 -f
 
 up_website:
 	docker-compose -f docker-compose-website.yaml up -d
@@ -33,4 +33,4 @@ down_website:
 	docker-compose -f docker-compose-website.yaml down
 
 logs_website:
-	docker-compose -f docker-compose-website.yaml --tail=50 -f
+	docker-compose -f docker-compose-website.yaml logs --tail=50 -f
