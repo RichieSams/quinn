@@ -1,0 +1,7 @@
+version: '3'
+services:
+  rcc-bot:
+    image: richiesams/rcc-bot
+    volumes:
+      - /dockervols/rcc-bot:/db
+    restart: always

@@ -60,3 +60,8 @@ services:
     volumes:
       - /dockervols/rcc-bot:/db
     restart: always
+
+networks:
+  default:
+    external:
+      name: webproxy
