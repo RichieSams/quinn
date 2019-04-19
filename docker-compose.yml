@@ -5,7 +5,7 @@ services:
     labels:
         com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
     container_name: nginx-ssl-proxy
-    restart: unless-stopped
+    restart: always
     ports:
       - "80:80"
       - "443:443"
@@ -14,24 +14,26 @@ services:
       - /dockervols/proxy/vhost.d:/etc/nginx/vhost.d
       - /dockervols/proxy/html:/usr/share/nginx/html
       - /dockervols/proxy/certs:/etc/nginx/certs:ro
+      - /dockervols/proxy/htpasswd:/etc/nginx/htpasswd:ro
 
   nginx-gen:
     image: jwilder/docker-gen
     command: -notify-sighup nginx-ssl-proxy -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
     container_name: nginx-gen
-    restart: unless-stopped
+    restart: always
     volumes:
       - /dockervols/proxy/conf.d:/etc/nginx/conf.d
       - /dockervols/proxy/vhost.d:/etc/nginx/vhost.d
       - /dockervols/proxy/html:/usr/share/nginx/html
       - /dockervols/proxy/certs:/etc/nginx/certs:ro
+      - /dockervols/proxy/htpasswd:/etc/nginx/htpasswd:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./proxy/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
 
   nginx-letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
     container_name: nginx-letsencrypt
-    restart: unless-stopped
+    restart: always
     volumes:
       - /dockervols/proxy/conf.d:/etc/nginx/conf.d
       - /dockervols/proxy/vhost.d:/etc/nginx/vhost.d
@@ -54,10 +56,15 @@ services:
       - ./site/default.conf:/etc/nginx/conf.d/default.conf:ro
     expose:
       - "80"
-    restart: unless-stopped
+    restart: always
 
   rcc-bot:
     image: richiesams/rcc-bot
     volumes:
       - /dockervols/rcc-bot:/db
-    restart: unless-stopped
+    restart: always
+
+networks:
+  default:
+    external:
+      name: webproxy
