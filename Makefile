@@ -34,3 +34,12 @@ down_website:
 
 logs_website:
 	docker-compose -f docker-compose-website.yaml logs --tail=50 -f
+
+up_shield:
+	docker-compose -f docker-compose-shield.yaml up -d
+
+down_shield:
+	docker-compose -f docker-compose-shield.yaml down
+
+logs_shield:
+	docker-compose -f docker-compose-shield.yaml logs --tail=50 -f
