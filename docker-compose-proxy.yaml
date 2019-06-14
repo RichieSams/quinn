@@ -29,6 +29,8 @@ services:
       - /dockervols/proxy/htpasswd:/etc/nginx/htpasswd:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./proxy/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
+    environment:
+      - RESOLVERS=8.8.8.8
 
   nginx-letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
