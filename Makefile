@@ -1,6 +1,9 @@
-all: create_proxy_network up_proxy up_website up_rcc up_shield
+all: create_proxy_network 
+	docker-compose -f docker-compose-rcc.yaml -f docker-compose-proxy.yaml -f docker-compose-website.yaml -f docker-compose-shield.yaml up -d
 
-down: down_shield down_rcc down_website down_proxy delete_proxy_network
+down:
+	docker-compose -f docker-compose-rcc.yaml -f docker-compose-proxy.yaml -f docker-compose-website.yaml -f docker-compose-shield.yaml down --remove-orphans -v
+	$(MAKE) delete_proxy_network
 
 create_proxy_network:
 	-docker network create webproxy
