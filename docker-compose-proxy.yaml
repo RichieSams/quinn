@@ -15,6 +15,8 @@ services:
       - /dockervols/proxy/html:/usr/share/nginx/html
       - /dockervols/proxy/certs:/etc/nginx/certs:ro
       - /dockervols/proxy/htpasswd:/etc/nginx/htpasswd:ro
+    environment:
+      - RESOLVERS=8.8.8.8
 
   nginx-gen:
     image: jwilder/docker-gen
