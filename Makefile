@@ -1,6 +1,6 @@
-all: create_proxy_network up_proxy up_website up_rcc
+all: create_proxy_network up_proxy up_website up_rcc up_shield
 
-down: down_rcc down_website down_proxy delete_proxy_network
+down: down_shield down_rcc down_website down_proxy delete_proxy_network
 
 create_proxy_network:
 	-docker network create webproxy
