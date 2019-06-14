@@ -4,6 +4,7 @@ services:
     image: richiesams/travis_shield
     container_name: travis-shield
     environment:
+      - PORT=80
       - VIRTUAL_HOST=shield.adrianastley.com
       - LETSENCRYPT_HOST=shield.adrianastley.com
       - LETSENCRYPT_EMAIL=adastley@gmail.com
