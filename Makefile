@@ -42,7 +42,7 @@ down_stats:
 	docker-compose -f docker-compose-stats.yaml down
 
 logs_stats:
-	docker-compose -f docker-compose-website.yaml logs --tail=50 -f
+	docker-compose -f docker-compose-stats.yaml logs --tail=50 -f
 
 up_shield:
 	docker-compose -f docker-compose-shield.yaml up -d
