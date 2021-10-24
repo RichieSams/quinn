@@ -1,4 +1,4 @@
-all: create_proxy_network up_proxy up_website up_rcc up_shield
+all: create_proxy_network up_proxy up_website up_stats up_rcc up_shield
 
 down: down_shield down_rcc down_website down_proxy delete_proxy_network
 
@@ -33,6 +33,15 @@ down_website:
 	docker-compose -f docker-compose-website.yaml down
 
 logs_website:
+	docker-compose -f docker-compose-website.yaml logs --tail=50 -f
+
+up_stats:
+	docker-compose -f docker-compose-stats.yaml up -d
+
+down_stats:
+	docker-compose -f docker-compose-stats.yaml down
+
+logs_stats:
 	docker-compose -f docker-compose-website.yaml logs --tail=50 -f
 
 up_shield:
