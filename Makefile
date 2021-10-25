@@ -44,6 +44,9 @@ down_stats:
 logs_stats:
 	docker-compose -f docker-compose-stats.yaml logs --tail=50 -f
 
+clean_stats:
+	sudo rm -rf /dockervols/nginx-cache/jscache
+
 up_shield:
 	docker-compose -f docker-compose-shield.yaml up -d
 
