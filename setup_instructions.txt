@@ -68,17 +68,17 @@ exit
 
 # Make docker volumes directories
 sudo su
-mkdir /dockervols
-mkdir /dockervols/proxy
-mkdir /dockervols/proxy/conf.d
-mkdir /dockervols/proxy/vhost.d
-mkdir /dockervols/proxy/certs
-mkdir /dockervols/proxy/html
-mkdir /dockervols/rcc-bot
+mkdir -p /dockervols/proxy/conf.d
+mkdir -p /dockervols/proxy/vhost.d
+mkdir -p /dockervols/proxy/certs
+mkdir -p /dockervols/proxy/html
+mkdir -p /dockervols/rcc-bot
+mkdir -p /dockervols/nginx-cache/jscache
 exit
 
 # Let site-html be owned by dev, since we will update it a lot
 mkdir /dockervols/site-html
+
 
 
 
